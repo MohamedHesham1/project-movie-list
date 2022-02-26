@@ -1,0 +1,103 @@
+/*css reset */
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+ol,
+ul {
+  list-style: none;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+/*css reset end*/
+
+body {
+  background-color: #072227;
+  font-family: "Comfortaa", cursive;
+}
+/*header*/
+header h1 {
+  text-align: center;
+  padding: 0.5rem;
+  margin-top: 1vh;
+  color: #aefeff;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+/*submit section*/
+.submit {
+  display: flex;
+  justify-content: center;
+  margin: 1vh auto;
+}
+form {
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+input:nth-child(2) {
+  width: 4rem;
+}
+input:nth-child(3) {
+  width: 5rem;
+}
+::placeholder {
+  color: #aefeff;
+  opacity: 0.6;
+}
+.input-style {
+  color: #aefeff;
+  border: 1px solid #aefeff;
+  border-radius: 3px;
+  background-color: #072227;
+}
+.ADD-button {
+  border: none;
+  border-radius: 3px;
+  background-color: #aefeff;
+  color: #072227;
+  font-weight: bold;
+  width: 9rem;
+  height: 1.4rem;
+  box-shadow: 0 0 5px #aefeff;
+}
+/*cards section*/
+.film-card {
+  width: 80vw;
+}
+.card-container {
+  display: grid;
+}
