@@ -39,6 +39,9 @@ img {
   white-space: nowrap;
   width: 1px;
 }
+input {
+  padding: 5px;
+}
 /*css reset end*/
 
 body {
@@ -91,7 +94,6 @@ input:nth-child(3) {
 ::placeholder {
   color: #aefeff;
   opacity: 0.6;
-  padding: 5px;
   font-family: "Comfortaa", cursive;
 }
 .input-style {
@@ -120,6 +122,27 @@ input:nth-child(3) {
   width: 65vw;
   color: #ffffff;
   margin: 2.5rem auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+@media (min-width: 1280px) and (max-width: 1645px) {
+  .cards-list {
+    width: 85vw;
+  }
+}
+@media (min-width: 500px) and (max-width: 1280px) {
+  .cards-list {
+    width: 90vw;
+  }
+}
+@media (max-width: 783px) {
+  .cards-list {
+    width: 49vw;
+  }
+  .submit {
+    max-width: 600px;
+  }
 }
 .cards-container {
   display: grid;
@@ -127,14 +150,15 @@ input:nth-child(3) {
     auto-fit,
     minmax(clamp(100%/ (3 + 1) + 0.1%, 340px, 100%), 1fr)
   );
-  gap: 30px 5px;
+  gap: 30px 25px;
   justify-items: center;
 }
+
 .card {
   border: 1px solid #4fbdba;
   border-radius: 5px;
   display: flex;
-  width: 340px;
+  min-width: 340px;
   gap: 2px;
 }
 .card-poster {
@@ -163,7 +187,7 @@ input:nth-child(3) {
   opacity: 0.7;
 }
 .review {
-  margin-top: 5px;
+  margin: 5px 5px 0 0;
 }
 .review p:nth-child(1) {
   font-size: 16px;
