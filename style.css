@@ -164,6 +164,7 @@ input:nth-child(3) {
   display: flex;
   min-width: 340px;
   gap: 2px;
+  position: relative;
 }
 .card-poster {
   border-radius: 4px;
@@ -180,6 +181,22 @@ input:nth-child(3) {
     brightness(105%) contrast(107%);
   cursor: pointer;
   margin-left: 3px;
+}
+.x-button {
+  background: none;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  cursor: pointer;
+}
+svg:hover {
+  fill: #69797d !important;
+}
+.x-svg {
+  pointer-events: none;
 }
 .stats {
   display: flex;
