@@ -1,7 +1,6 @@
 const CardsContainer = document.querySelector(".cards-container");
 let id = 0;
 const form = document.querySelector("form");
-
 const filmData = [];
 document.addEventListener("DOMContentLoaded", () => {
   deleteCard();
@@ -46,13 +45,13 @@ function deleteCard() {
 
 function deleteFromArray(e) {
   const id = e.target.parentElement.getAttribute("data-id");
-  const filmIndex = filmData.findIndex((film) => film.id == id);
+  const filmIndex = filmData.findIndex((film) => film.cardId == id);
+  console.log(filmIndex);
   filmData.splice(filmIndex, 1);
   console.log(filmData);
 }
 
 function FilmInput() {
-  // const addButton = document.querySelector(".add-button");
   const inputValues = document.querySelectorAll("input");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
