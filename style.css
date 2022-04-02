@@ -42,6 +42,9 @@ img {
 input {
   padding: 5px;
 }
+textarea {
+  padding: 3px;
+}
 /*css reset end*/
 
 body {
@@ -89,6 +92,9 @@ input:nth-child(2) {
 }
 input:nth-child(3) {
   width: 161px;
+  height: 35px;
+}
+input:nth-child(4) {
   height: 35px;
 }
 ::placeholder {
@@ -193,12 +199,22 @@ input:nth-child(3) {
   top: 4px;
   cursor: pointer;
 }
+.edit-button {
+  background: none;
+  width: 1.8rem;
+  height: 1.8rem;
+  border: none;
+  position: absolute;
+  right: 45px;
+  top: 7px;
+  cursor: pointer;
+}
 svg:hover {
   fill: #69797d !important;
 }
-.x-svg {
+/* .x-svg {
   pointer-events: none;
-}
+} */
 .stats {
   display: flex;
 }
@@ -232,6 +248,40 @@ svg:hover {
 .review-button:hover {
   opacity: 0.8;
   transition: 0.5s;
+}
+/* modal styling */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #072227;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+/* The Close Button */
+.close {
+  color: #aefeff;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close:hover,
+.close:focus {
+  color: #0d758a;
+  text-decoration: none;
+  cursor: pointer;
 }
 .film-name {
   margin-bottom: 4px;

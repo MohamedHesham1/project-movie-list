@@ -13,8 +13,11 @@ function addCard() {
     <img class="card-poster" src=${
       filmData[filmData.length - 1].poster
     }  alt="Dr.Strangelove poster" >  
-    <button class="x-button">
-      <svg class="x-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(174, 254, 255, 1);transform: ;msFilter:;"><path d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path></svg>
+    <button class="x-button close">
+    &times
+    </button>
+    <button class="edit-button">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(174, 254, 255, 1);transform: ;msFilter:;"><path d="M19.045 7.401c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.378-.378-.88-.586-1.414-.586s-1.036.208-1.413.585L4 13.585V18h4.413L19.045 7.401zm-3-3 1.587 1.585-1.59 1.584-1.586-1.585 1.589-1.584zM6 16v-1.585l7.04-7.018 1.586 1.586L7.587 16H6zm-2 4h16v2H4z"></path></svg>
     </button>
     <div class="film-info">
       <h3 class="film-name">${filmData[filmData.length - 1].title}</h3>
@@ -25,9 +28,17 @@ function addCard() {
       </div>
       <div class="review">
         <p>my review:</p> 
-        <p>${filmData[filmData.length - 1].review}</p> 
+        <p>${filmData[filmData.length - 1].review}</p>   
       </div>
-      <button class="review-button">view full review</button>
+      <button class="review-button" 
+        >view full review</button>
+      <div  class=" modal ">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times</span>
+          <p>${filmData[filmData.length - 1].review}</p>
+        </div>
+      </div>
     </div>
   </li>
   `;
@@ -42,7 +53,7 @@ function deleteCard() {
     }
   });
 }
-
+//remove the card from array
 function deleteFromArray(e) {
   const id = e.target.parentElement.getAttribute("data-id");
   const filmIndex = filmData.findIndex((film) => film.cardId == id);
@@ -61,16 +72,43 @@ function FilmInput() {
       title: form.title.value,
       date: form.year.value,
       rate: form.rate.value,
-      review:
-        "Absolutely outstanding farce. Like a slow-motion screwball. George C. Scott and his faces absolutely run away with this thing.",
+      review: form.review.value,
     });
     addCard();
+    toggleModal();
     clearInputFields(inputValues);
+
     console.log(filmData);
   });
 }
 function clearInputFields(inputValues) {
+  const textArea = document.querySelector("textarea");
+  textArea.value = "";
   inputValues.forEach((input) => {
     input.value = "";
   });
+}
+function toggleModal() {
+  const modals = document.getElementsByClassName("modal");
+  const modalsArr = Array.from(modals);
+  const btns = document.getElementsByClassName("review-button");
+  for (let i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", () => {
+      modals[i].style.display = "block";
+    });
+  }
+  CardsContainer.addEventListener("click", (e) => {
+    modalsArr.forEach((modal) => {
+      if (e.target.closest(".close") || e.target == modal) {
+        modal.style.display = "none";
+      }
+    });
+  });
+}
+function toggleModalOff(modals) {
+  for (let i = 0; i < spans.length; i++) {
+    spans[i].onclick = function () {
+      modals[i].style.display = "none";
+    };
+  }
 }
