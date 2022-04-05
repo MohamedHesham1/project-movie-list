@@ -1,15 +1,17 @@
 const CardsContainer = document.querySelector(".cards-container");
+const modal = document.querySelector(".modal");
 let id = 0;
 const form = document.querySelector("form");
 const filmData = [];
 document.addEventListener("DOMContentLoaded", () => {
   deleteCard();
   FilmInput();
+  toggleModal();
 });
 // injecting html card template into the cards container
 function addCard() {
   CardsContainer.innerHTML += `
-  <li class="card" data-id="${filmData[filmData.length - 1].cardId}" >
+  <li class="card" data-id=${filmData[filmData.length - 1].cardId} >
     <img class="card-poster" src=${
       filmData[filmData.length - 1].poster
     }  alt="Dr.Strangelove poster" >  
@@ -28,17 +30,11 @@ function addCard() {
       </div>
       <div class="review">
         <p>my review:</p> 
-        <p>${filmData[filmData.length - 1].review}</p>   
+        <p class="review-text" >${filmData[filmData.length - 1].review}</p>   
       </div>
       <button class="review-button" 
         >view full review</button>
-      <div  class=" modal ">
-        <!-- Modal content -->
-        <div class="modal-content">
-          <span class="close">&times</span>
-          <p>${filmData[filmData.length - 1].review}</p>
-        </div>
-      </div>
+      
     </div>
   </li>
   `;
@@ -57,7 +53,6 @@ function deleteCard() {
 function deleteFromArray(e) {
   const id = e.target.parentElement.getAttribute("data-id");
   const filmIndex = filmData.findIndex((film) => film.cardId == id);
-  console.log(filmIndex);
   filmData.splice(filmIndex, 1);
   console.log(filmData);
 }
@@ -75,9 +70,10 @@ function FilmInput() {
       review: form.review.value,
     });
     addCard();
-    toggleModal();
-    clearInputFields(inputValues);
+    viewReviewModal();
+    // editReview();
 
+    clearInputFields(inputValues);
     console.log(filmData);
   });
 }
@@ -88,27 +84,45 @@ function clearInputFields(inputValues) {
     input.value = "";
   });
 }
+function openModal() {
+  modal.style.display = "block";
+}
+function closeModal() {
+  modal.style.display = "none";
+}
 function toggleModal() {
-  const modals = document.getElementsByClassName("modal");
-  const modalsArr = Array.from(modals);
-  const btns = document.getElementsByClassName("review-button");
-  for (let i = 0; i < btns.length; i++) {
-    btns[i].addEventListener("click", () => {
-      modals[i].style.display = "block";
-    });
-  }
   CardsContainer.addEventListener("click", (e) => {
-    modalsArr.forEach((modal) => {
-      if (e.target.closest(".close") || e.target == modal) {
-        modal.style.display = "none";
-      }
-    });
+    const id = Number(
+      e.target.parentElement.parentElement.getAttribute("data-id")
+    );
+
+    if (
+      id === filmData[filmData.length - 1].cardId &&
+      e.target.closest("button")
+    ) {
+      openModal();
+    }
+  });
+  modal.addEventListener("click", (e) => {
+    if (e.target.closest(".close") || e.target == modal) {
+      closeModal();
+    }
   });
 }
-function toggleModalOff(modals) {
-  for (let i = 0; i < spans.length; i++) {
-    spans[i].onclick = function () {
-      modals[i].style.display = "none";
-    };
-  }
+function viewReviewModal() {
+  const contentModal = document.querySelector(".modal-content");
+  contentModal.innerHTML = `
+  <span class="close">&times</span>
+  <p class="modal-text"> ${filmData[filmData.length - 1].review}</p>
+  `;
+}
+function editReview() {
+  const modalContent = document.querySelectorAll(".modal-content");
+  CardsContainer.addEventListener("click", (e) => {
+    if (
+      Number(e.target.parentElement.parentElement.dataset.id) ==
+      filmData[filmData.length - 1].cardId
+    ) {
+    }
+  });
 }

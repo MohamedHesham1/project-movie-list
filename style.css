@@ -224,6 +224,7 @@ svg:hover {
 .film-date {
   opacity: 0.7;
 }
+/* review */
 .review {
   margin: 5px 7px 0 0;
 }
@@ -233,6 +234,20 @@ svg:hover {
 .review p:nth-child(2) {
   font-size: 14px;
 }
+.review-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 290px;
+}
+
+.modal-text {
+  white-space: pre-wrap;
+  color: white;
+  margin: 1rem;
+  text-align: left;
+}
+
 .review-button {
   border: none;
   border-radius: 3px;
@@ -268,7 +283,7 @@ svg:hover {
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 50%;
 }
 /* The Close Button */
 .close {
